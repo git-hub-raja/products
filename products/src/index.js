@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import ProductList from './components/ProductList';
-// import ViewProduct from './components/ViewProduct';
 import reportWebVitals from './reportWebVitals';
+// import HashRouterNav from './components/navigation/HashRouterNav';
+// import BrowserRouterNav from './components/navigation/BrowserRouterNav';
+import BrowserRouterProviderNav from './components/navigation/BrowserRouterProviderNav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ProductList />
+    <BrowserRouterProviderNav />
   </React.StrictMode>
 );
 
