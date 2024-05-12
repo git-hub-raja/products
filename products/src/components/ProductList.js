@@ -2,7 +2,8 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Paginate from './utils/paginate';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 class ProductList extends React.Component {
 
@@ -51,7 +52,7 @@ class ProductList extends React.Component {
             <>
                 <div className='container-fluid'>
                     <h3 className='p-2'>Products</h3>
-                    
+                    <Link to="/add"><Button varient="outline-secondary" size="sm">Add Product</Button></Link>
                     <Table hover>
                         <thead>
                             <tr>
