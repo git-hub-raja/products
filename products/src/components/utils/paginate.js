@@ -58,7 +58,7 @@ const Paginate = ({totalRecords, recordsPerPage = 10, siblingPageCount = 5, load
     }
     return(
         <>
-            <Pagination>
+            <Pagination style = {{'justify-content':'center','margin': '20px'}}>
                 <Pagination.First onClick={() => firstPage()}></Pagination.First>
                 <Pagination.Prev onClick={() => prevPage()}></Pagination.Prev>
                 {currentSiblingPageSet > 1 ? <Pagination.Ellipsis></Pagination.Ellipsis> : null}
