@@ -53,9 +53,9 @@ class ProductList extends React.Component {
                 <div className='container-fluid'>
                     <h3 className='p-2'>Products</h3>
                     <Link to="/add"><Button varient="outline-secondary" size="sm">Add Product</Button></Link>
-                    <div style={{'height':'72vh','overflow-y':'scroll'}}>
+                    <div className='product-list-scroll'>
                     <Table hover >
-                        <thead style={{'position':'sticky','top':'0'}}>
+                        <thead className='product-list-sticky-header'>
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>

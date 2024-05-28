@@ -1,5 +1,6 @@
 import Pagination from 'react-bootstrap/Pagination';
 import { useState, useEffect } from 'react';
+import '../../css/common.css';
 import PropTypes from 'prop-types';
 
 const Paginate = ({totalRecords, recordsPerPage = 10, siblingPageCount = 5, loadProducts}) => {
@@ -58,7 +59,7 @@ const Paginate = ({totalRecords, recordsPerPage = 10, siblingPageCount = 5, load
     }
     return(
         <>
-            <Pagination style = {{'justify-content':'center','margin': '20px'}}>
+            <Pagination className='paginate-center-align'>
                 <Pagination.First onClick={() => firstPage()}></Pagination.First>
                 <Pagination.Prev onClick={() => prevPage()}></Pagination.Prev>
                 {currentSiblingPageSet > 1 ? <Pagination.Ellipsis></Pagination.Ellipsis> : null}
