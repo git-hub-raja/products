@@ -1,6 +1,5 @@
 import Pagination from 'react-bootstrap/Pagination';
 import { useState, useEffect } from 'react';
-import '../../css/common.css';
 import PropTypes from 'prop-types';
 
 const Paginate = ({totalRecords, recordsPerPage = 10, siblingPageCount = 5, loadProducts}) => {

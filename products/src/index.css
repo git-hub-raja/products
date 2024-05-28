@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.paginate-center-align {
+  justify-content: center;
+  margin: 20px;
+}
+
+.product-list-scroll {
+  height:72vh;
+  overflow-y:scroll;
+}
+.product-list-sticky-header {
+  position: sticky;
+  top: 0;
+}
