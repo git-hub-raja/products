@@ -53,8 +53,9 @@ class ProductList extends React.Component {
                 <div className='container-fluid'>
                     <h3 className='p-2'>Products</h3>
                     <Link to="/add"><Button varient="outline-secondary" size="sm">Add Product</Button></Link>
-                    <Table hover>
-                        <thead>
+                    <div className='product-list-scroll'>
+                    <Table hover >
+                        <thead className='product-list-sticky-header'>
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
@@ -79,6 +80,7 @@ class ProductList extends React.Component {
                             }
                         </tbody>
                     </Table>
+                    </div>
                     { pagination_component }
                 </div>
             </>
