@@ -150,7 +150,7 @@ class AddProduct extends React.Component {
                                         isInvalid={this.state.userFeedbacks.category}
                                     >
                                         <option value={0}>Click here to select</option>
-                                        {this.state.catagories.map((category, index) => <option key={index + 1} value={category}>{category[0].toUpperCase() + category.substring(1)}</option>)}
+                                        {this.state.catagories.map((category, index) => <option key={index + 1} value={category.slug}>{category.name}</option>)}
                                     </Form.Control>
                                     <Form.Control.Feedback type='invalid'>Please select a category</Form.Control.Feedback>
                                 </Form.Group>
