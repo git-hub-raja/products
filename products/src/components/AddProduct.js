@@ -76,6 +76,10 @@ class AddProduct extends React.Component {
         Object.keys(this.state.userInputs).forEach(key => {
             if ((key === 'category' && this.state.userInputs[key] === '0') || !this.state.userInputs[key]) {
                 userFeedbacks[key] = true;
+            } else if (key === "brand" 
+                && (!(/^[A-Za-z]+[A-Za-z0-9_ ]*$/.test(this.state.userInputs[key])) 
+                    || !(this.state.userInputs[key].length <= 10))){
+                userFeedbacks[key] = true;
             }
         })
         this.setState({ userFeedbacks });
@@ -165,7 +169,15 @@ class AddProduct extends React.Component {
                                         required
                                         isInvalid={this.state.userFeedbacks.brand}
                                     />
-                                    <Form.Control.Feedback type='invalid'>Please enter brand</Form.Control.Feedback>
+                                    <Form.Control.Feedback type='invalid'>
+                                        {
+                                            this.state.userInputs.brand 
+                                            ? (this.state.userInputs.brand.length > 10 
+                                                ? "Brand name is too long" 
+                                                : "Please enter valid brand") 
+                                            : "Please enter brand"
+                                        }
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Row>
 
