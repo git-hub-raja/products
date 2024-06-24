@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductList from "../ProductList";
 import ViewProduct from "../ViewProduct";
 import AddProduct from "../AddProduct";
+import LandingPage from "../LandingPage";
 import ReactCompLifeCycleHooksHOC from "../utils/ReactCompLifeCycleHooks";
 
 const routes = [
-    { path: '/', element: <ProductList /> },
+    { path: '/', element: <LandingPage /> },
     { path: '/list', element: <ProductList /> },
     { path: '/view', element: <ViewProduct /> },
     { path: '/add', element: <AddProduct /> },

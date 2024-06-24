@@ -5,6 +5,9 @@ import Col from 'react-bootstrap/esm/Col';
 import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 import Notify from './utils/notify';
+import FooterComponent from './FooterComponent';
+import HeaderComponent from "./HeadComponent";
+
 
 const notify_types = {
     success: 'success',
@@ -110,7 +113,6 @@ class AddProduct extends React.Component {
                 })
             })
             .catch(err => {
-                console.log(err);
                 this.setState({
                     notify: {
                         ...this.state.notify,
@@ -135,10 +137,14 @@ class AddProduct extends React.Component {
         })
     }
 
+      
+
     render() {
         return (
             <>
+            <Container>
                 <div className='container-fluid pt-3'>
+                <HeaderComponent />
                     <Container>
                         <h3 className='mb-3'>Product Addition</h3>
                         {this.state.notify.message && <Notify notify={this.state.notify} cb={this.state.notify.type === notify_types.success ? this.clear : null}></Notify>}
@@ -270,31 +276,7 @@ class AddProduct extends React.Component {
                                 </Form.Group>
                             </Row>
 
-                            {/* <Row className='mb-3'>
-                                <Form.Group as={Col} md={6} controlId='tImage'>
-                                    <Form.Label>Thumbnail Image</Form.Label>
-                                    <Form.Control
-                                        type='file'
-                                        value={this.state.userInputs.tImage}
-                                        onChange={(event) => this.handleChange(event, 'tImage')}
-                                        required
-                                        isInvalid={this.state.userFeedbacks.tImage}
-                                    />
-                                    <Form.Control.Feedback type='invalid'>Please upload an image</Form.Control.Feedback>
-                                </Form.Group>
-                                <Form.Group as={Col} md={6} controlId='pImage'>
-                                    <Form.Label>Display Images</Form.Label>
-                                    <Form.Control
-                                        type='file'
-                                        value={this.state.userInputs.pImage}
-                                        onChange={(event) => this.handleChange(event, 'pImage')}
-                                        required
-                                        isInvalid={this.state.userFeedbacks.pImage}
-                                    />
-                                    <Form.Control.Feedback type='invalid'>Please upload an image</Form.Control.Feedback>
-                                </Form.Group>
-                            </Row> */}
-
+                            
                             <Row className='mb-3'>
                                 <Form.Group as={Col} md={6} controlId='tImage'>
                                     <Form.Label>Thumbnail Image</Form.Label>
@@ -325,7 +307,9 @@ class AddProduct extends React.Component {
                             <Button type="submit">Submit</Button>
                         </Form>
                     </Container>
+                    <FooterComponent />
                 </div>
+                </Container>
             </>
         )
     }

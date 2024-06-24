@@ -9,6 +9,9 @@ import Image from 'react-bootstrap/Image';
 import Carousel from 'react-bootstrap/Carousel';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import FooterComponent from './FooterComponent';
+import HeaderComponent from "./HeadComponent";
+import Container from 'react-bootstrap/esm/Container';
 
 class ViewProduct extends React.Component {
 
@@ -19,25 +22,17 @@ class ViewProduct extends React.Component {
         }
 
         this.goBackToList = this.goBackToList.bind(this);
-        console.log('ViewProduct : ', props)
     }
 
     goBackToList = () => {
-        // this.props.navigate("/list");
         this.props.navigate(-1);
-    }
-
-    componentWillUnmount() {
-        console.log("ViewProduct : componentWillUnmount");
-    }
-
-    componentDidMount() {
-        console.log("ViewProduct : componentDidMount");
     }
 
     render() {
         return (
             <>
+            <Container>
+             <HeaderComponent />
                 <div className='container-fluid'>
                     <h3 className='p-2'>View Product</h3>
                     <Button className='mb-2' size='sm' variant='secondary' onClick={() => this.goBackToList()}>Back to List</Button>
@@ -131,6 +126,8 @@ class ViewProduct extends React.Component {
                             </Tab>
                         </Tabs>}
                 </div>
+                <FooterComponent />
+                </Container>
             </>
         )
     }

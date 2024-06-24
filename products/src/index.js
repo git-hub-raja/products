@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 // import HashRouterNav from './components/navigation/HashRouterNav';
 // import BrowserRouterNav from './components/navigation/BrowserRouterNav';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import BrowserRouterProviderNav from './components/navigation/BrowserRouterProviderNav';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
