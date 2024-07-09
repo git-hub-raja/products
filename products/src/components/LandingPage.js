@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import Design_verifications from "./utils/images/Design_verifications.jpg";
-import fpga_design_services from "./utils/images/fpga_design_services.jpg";
+import design_verifications from "../images/design_verifications.jpg";
+import fpga_design_services from "../images/fpga_design_services.jpg";
 import HeaderComponent from "./HeadComponent";
 import FooterComponent from "./FooterComponent";
 import Container from "react-bootstrap/Container";
@@ -69,7 +69,7 @@ class HomeComponent extends React.Component {
             <div className="img1-container">
               <Link to="/list">
                 <img
-                  src={Design_verifications}
+                  src={design_verifications}
                   className="Main1-Banner"
                   alt="Main1-Banner"
                 />

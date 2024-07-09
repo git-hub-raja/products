@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./utils/images/logo.png";
+import logo from "../images/logo.png";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import InputGroup from "react-bootstrap/InputGroup";
