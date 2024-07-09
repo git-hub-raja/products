@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Loading from "./LoaderComponent"
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -139,6 +140,7 @@ class ProductList extends React.Component {
         );
       }
     }
+    console.log(allPCards)
     return (
       <>
         <Container>
@@ -180,7 +182,7 @@ class ProductList extends React.Component {
               </div>
             </div>
           </div>
-          {allPCards}
+          {allPCards.length>0?allPCards:<Loading/>}
           {pagination_component}
           <FooterComponent />
         </Container>
@@ -190,6 +192,7 @@ class ProductList extends React.Component {
 }
 
 const ProductListWithRouter = () => {
+
   const navigate = useNavigate();
   return <ProductList navigate={navigate} />;
 };

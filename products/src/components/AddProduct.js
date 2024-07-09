@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Notify from './utils/notify';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from "./HeadComponent";
+import { useNavigate } from "react-router-dom";
 
 
 const notify_types = {
@@ -60,11 +61,15 @@ class AddProduct extends React.Component {
         this.loadCategories = this.loadCategories.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.clear = this.clear.bind(this);
+        this.goBackToList = this.goBackToList.bind(this);
     }
 
     componentDidMount() {
         this.loadCategories();
     }
+    goBackToList = () => {
+        this.props.navigate(-1);
+      };
 
     clear = () => this.setState({ ...initial_state })
 
@@ -146,7 +151,7 @@ class AddProduct extends React.Component {
                 <div className='container-fluid pt-3'>
                 <HeaderComponent />
                     <Container>
-                        <h3 className='mb-3'>Product Addition</h3>
+                        <h4 className="pt-2 pb-2 mb-3"><i className="bi bi-arrow-left-circle-fill m-2" onClick={() => this.goBackToList()}></i>Product Addition</h4>
                         {this.state.notify.message && <Notify notify={this.state.notify} cb={this.state.notify.type === notify_types.success ? this.clear : null}></Notify>}
                         <Form noValidate validated={this.state.validated} onSubmit={(event) => this.handleFormSubmit(event)}>
                             <Row className='mb-3'>
@@ -315,4 +320,9 @@ class AddProduct extends React.Component {
     }
 }
 
-export default AddProduct;
+const AddProductWithRouter = () => {
+    const navigate = useNavigate();
+    return <AddProduct navigate={navigate} />;
+  };
+  
+  export default AddProductWithRouter;

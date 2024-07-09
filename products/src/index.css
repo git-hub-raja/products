@@ -12,17 +12,27 @@ code {
     monospace;
 }
 .App-logo{
-  width: 76%;
+  width: 100%;
 }
 .paginate-center-align {
   justify-content: center;
   margin: 20px;
 }
 
-/* .product-list-scroll {
-  height:72vh;
-  overflow-y:scroll;
-} */
+.f-links-text-centered{
+  text-align: center;
+}
+
+.sbc{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sbc:hover h3{
+ font-size: 2rem;
+ 
+}
 .product-list-sticky-header {
   position: sticky;
   top: 0;
@@ -35,9 +45,12 @@ code {
     text-align: center;
     border-bottom: 0px solid white;
 }
-.carousel-inner{
-  width: 30%!important;
-  margin:0% 35%;
+.centered{
+  justify-content: center;
+}
+
+.m-25p{
+  margin: 25px 0px;
 }
 .main-container{
   display: flex;
@@ -52,7 +65,7 @@ code {
   cursor: pointer;
 }
 .head-container{
-   width: 70%;
+   width: 60%;
    margin: auto;
 }
 .head-container:hover{
@@ -90,6 +103,10 @@ cursor: pointer;
 }
 .content-allign{
 min-width: 75%;
+}
+.c-inner{
+  width:45% ;
+  margin:0 auto;
 }
 .cart-item-allignment{
 
@@ -130,4 +147,43 @@ background-color: darkturquoise;
 .card:hover .product-options-allignment {
       display: block;
 }
+.sign-out-container{
+  margin:  auto 5px auto 0px;
+}
+.cart-container{
+  margin:  auto 20px;
+}
+.loader-container{
+  text-align: center;
+}
+.cart-alignment{
+   display: flex!important;
+}
+.list-group-flush{
+  display: contents!important;
+}
 
+.forgot-password-align{
+  float: right;
+  text-decoration: none;
+}
+.f-links-text-deco{
+justify-content: center;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+.f-links-text-deco:hover{
+  color: blue;
+  font-size: 20px;
+}
+
+.bi-cart-fill .badge {
+  position: relative;
+  top: -24px;
+  right: 10px;
+  border-radius: 50%;
+  color: red;
+  font-size: 0.75rem;
+  border: 1px solid red;
+}
