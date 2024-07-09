@@ -15,7 +15,7 @@ function Notify({ notify, cb }) {
     }
     return (
         <>
-            <ToastCotainer className='p-4' position='top-end' style={{ zIndex: 1 }}>
+            <ToastCotainer className='p-4' position='top-end' style={{ zIndex: 2 }}>
                 <Toast className='mb-3' bg={notify.type} show={showToast} onClose={() => closeToast()}>
                     <Toast.Header>
                         <strong className="me-auto">Notification</strong>

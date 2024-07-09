@@ -5,6 +5,10 @@ import Col from 'react-bootstrap/esm/Col';
 import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/esm/Container';
 import Notify from './utils/notify';
+import FooterComponent from './FooterComponent';
+import HeaderComponent from "./HeadComponent";
+import { useNavigate } from "react-router-dom";
+
 
 const notify_types = {
     success: 'success',
@@ -57,11 +61,15 @@ class AddProduct extends React.Component {
         this.loadCategories = this.loadCategories.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.clear = this.clear.bind(this);
+        this.goBackToList = this.goBackToList.bind(this);
     }
 
     componentDidMount() {
         this.loadCategories();
     }
+    goBackToList = () => {
+        this.props.navigate(-1);
+      };
 
     clear = () => this.setState({ ...initial_state })
 
@@ -110,7 +118,6 @@ class AddProduct extends React.Component {
                 })
             })
             .catch(err => {
-                console.log(err);
                 this.setState({
                     notify: {
                         ...this.state.notify,
@@ -135,12 +142,16 @@ class AddProduct extends React.Component {
         })
     }
 
+      
+
     render() {
         return (
             <>
+            <Container>
                 <div className='container-fluid pt-3'>
+                <HeaderComponent />
                     <Container>
-                        <h3 className='mb-3'>Product Addition</h3>
+                        <h4 className="pt-2 pb-2 mb-3"><i className="bi bi-arrow-left-circle-fill m-2" onClick={() => this.goBackToList()}></i>Product Addition</h4>
                         {this.state.notify.message && <Notify notify={this.state.notify} cb={this.state.notify.type === notify_types.success ? this.clear : null}></Notify>}
                         <Form noValidate validated={this.state.validated} onSubmit={(event) => this.handleFormSubmit(event)}>
                             <Row className='mb-3'>
@@ -270,31 +281,7 @@ class AddProduct extends React.Component {
                                 </Form.Group>
                             </Row>
 
-                            {/* <Row className='mb-3'>
-                                <Form.Group as={Col} md={6} controlId='tImage'>
-                                    <Form.Label>Thumbnail Image</Form.Label>
-                                    <Form.Control
-                                        type='file'
-                                        value={this.state.userInputs.tImage}
-                                        onChange={(event) => this.handleChange(event, 'tImage')}
-                                        required
-                                        isInvalid={this.state.userFeedbacks.tImage}
-                                    />
-                                    <Form.Control.Feedback type='invalid'>Please upload an image</Form.Control.Feedback>
-                                </Form.Group>
-                                <Form.Group as={Col} md={6} controlId='pImage'>
-                                    <Form.Label>Display Images</Form.Label>
-                                    <Form.Control
-                                        type='file'
-                                        value={this.state.userInputs.pImage}
-                                        onChange={(event) => this.handleChange(event, 'pImage')}
-                                        required
-                                        isInvalid={this.state.userFeedbacks.pImage}
-                                    />
-                                    <Form.Control.Feedback type='invalid'>Please upload an image</Form.Control.Feedback>
-                                </Form.Group>
-                            </Row> */}
-
+                            
                             <Row className='mb-3'>
                                 <Form.Group as={Col} md={6} controlId='tImage'>
                                     <Form.Label>Thumbnail Image</Form.Label>
@@ -325,10 +312,17 @@ class AddProduct extends React.Component {
                             <Button type="submit">Submit</Button>
                         </Form>
                     </Container>
+                    <FooterComponent />
                 </div>
+                </Container>
             </>
         )
     }
 }
 
-export default AddProduct;
+const AddProductWithRouter = () => {
+    const navigate = useNavigate();
+    return <AddProduct navigate={navigate} />;
+  };
+  
+  export default AddProductWithRouter;
