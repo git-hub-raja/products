@@ -39,10 +39,10 @@ class Cart extends React.Component {
             </h4>
             {this.state.products.length > 0?this.state.products.map((p) => {
               return (
-                <div className="cart-alignment">
-                  <ListGroup variant="flush">
+                <div className="cart-alignment" key={p.id + "-wrap"}>
+                  <ListGroup key={p.id} variant="flush">
                     <ListGroup.Item
-                      key="6"
+                      key={p.id + "1"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -52,7 +52,7 @@ class Cart extends React.Component {
                       </div>
                     </ListGroup.Item>
                     <ListGroup.Item
-                      key="1"
+                      key={p.id + "2"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -62,7 +62,7 @@ class Cart extends React.Component {
                       </div>
                     </ListGroup.Item>
                     <ListGroup.Item
-                      key="3"
+                      key={p.id + "3"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -72,7 +72,7 @@ class Cart extends React.Component {
                       </div>
                     </ListGroup.Item>
                     <ListGroup.Item
-                      key="4"
+                      key={p.id + "4"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -82,7 +82,7 @@ class Cart extends React.Component {
                       </div>
                     </ListGroup.Item>
                     <ListGroup.Item
-                      key="5"
+                      key={p.id + "5"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -92,7 +92,7 @@ class Cart extends React.Component {
                       </div>
                     </ListGroup.Item>
                     <ListGroup.Item
-                      key="6"
+                      key={p.id + "6"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
@@ -103,12 +103,12 @@ class Cart extends React.Component {
                     </ListGroup.Item>
                     .
                     <ListGroup.Item
-                      key="2"
+                      key={p.id + "7"}
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                     >
                       <div className="ms-2 me-auto">
-                        {<i class="bi bi-x-square-fill"></i>}
+                        {<i className="bi bi-x-square-fill"></i>}
                       </div>
                     </ListGroup.Item>
                   </ListGroup>

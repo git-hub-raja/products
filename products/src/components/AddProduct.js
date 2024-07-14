@@ -8,7 +8,8 @@ import Notify from './utils/notify';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from "./HeadComponent";
 import { useNavigate } from "react-router-dom";
-
+import { connect } from 'react-redux';
+import { actionDispatchers } from '../redux/actions';
 
 const notify_types = {
     success: 'success',
@@ -116,6 +117,7 @@ class AddProduct extends React.Component {
                         type: notify_types.success
                     }
                 })
+                this.props.addProduct(r);
             })
             .catch(err => {
                 this.setState({
@@ -320,9 +322,26 @@ class AddProduct extends React.Component {
     }
 }
 
-const AddProductWithRouter = () => {
+const mapStateToProps = state => {
+    return {
+        allProducts: state.products.allProducts //This is not being used here
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addProduct: product => actionDispatchers.addProduct(dispatch, product)
+    }
+}
+
+const ConnectedAddProduct = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddProduct);
+
+const ConnectedAddProductWithRouter = () => {
     const navigate = useNavigate();
-    return <AddProduct navigate={navigate} />;
+    return <ConnectedAddProduct navigate={navigate} />;
   };
   
-  export default AddProductWithRouter;
+  export default ConnectedAddProductWithRouter;
