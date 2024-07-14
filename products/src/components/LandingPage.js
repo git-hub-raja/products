@@ -34,7 +34,6 @@ class HomeComponent extends React.Component {
   };
 
   render() {
-    console.log(this.state.products);
     let carouselItems = [];
     if (this.state.products && this.state.products.length > 0) {
       for (let itr = 0; itr < this.state.products.length; itr += 3) {

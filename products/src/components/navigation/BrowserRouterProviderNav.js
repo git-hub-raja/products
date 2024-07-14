@@ -9,7 +9,7 @@ import Cart from "../CartComponent"
 import ReactCompLifeCycleHooksHOC from "../utils/ReactCompLifeCycleHooks";
 
 const routes = [
-    { path: '/', element: <SignIn /> },
+    { path: '*', element: <SignIn /> },
     { path: '/lpg', element: <LandingPage /> },
     { path: '/list', element: <ProductList /> },
     { path: '/cart', element: <Cart /> },

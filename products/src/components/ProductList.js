@@ -12,6 +12,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Loading from "./LoaderComponent"
+import { connect } from 'react-redux';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -27,40 +28,40 @@ class ProductList extends React.Component {
     };
 
     this.handleProductSelect = this.handleProductSelect.bind(this);
-    this.loadProducts = this.loadProducts.bind(this);
     this.filterItems = this.filterItems.bind(this);
     this.filterProductsByCategory = this.filterProductsByCategory.bind(this);
     this.clearSearch = this.clearSearch.bind(this);
     this.loadCategories = this.loadCategories.bind(this);
+    this.loadProducts = this.loadProducts.bind(this);
   }
 
   componentDidMount() {
-    this.loadProducts(1);
     this.loadCategories();
+    this.loadProducts(1);
   }
 
-  loadProducts = (page) => {
-    fetch(
-      "https://dummyjson.com/products?limit=" +
-        this.state.recordsPerPage +
-        "&skip=" +
-        (page * this.state.recordsPerPage - this.state.recordsPerPage)
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        this.setState({
-          products: (response && response.products) || [],
-          allProducts: (response && response.products) || [],
-          totalRecords: response.total,
-        });
-      });
-  };
+  static getDerivedStateFromProps(props, state) {
+    return {
+        allProducts: props.allProducts && props.allProducts.length !== state.allProducts.length ? props.allProducts || [] : state.allProducts || [],
+        products: props.allProducts && props.allProducts.length !== state.allProducts.length ? props.allProducts || [] : state.products || [],
+        totalRecords: props.allProducts && props.allProducts.length !== state.allProducts.length ? (props.allProducts && props.allProducts.length) || 0 : (state.allProducts && state.allProducts.length) || 0
+    }
+}
+
+loadProducts = page => {
+    let to = this.state.recordsPerPage * page;
+    to = to <= this.state.totalRecords ? to : this.state.totalRecords;
+    const offset = to - this.state.recordsPerPage;
+    this.setState({
+        products: this.state.allProducts.slice(offset, to)
+    })
+}
 
   filterItems = (searchInput) => {
     const filteredData = this.state.allProducts.filter((product) =>
       product.title.includes(searchInput)
     );
-    this.setState({ products: filteredData });
+    this.setState({ products: filteredData, totalRecords: filteredData });
   };
 
   filterProductsByCategory = (selectedCategory) => {
@@ -73,6 +74,7 @@ class ProductList extends React.Component {
   clearSearch = (setSearchInput) => {
     setSearchInput("");
     this.setState({ products: this.state.allProducts });
+    this.loadProducts(1);
   };
 
   handleProductSelect = (product) => {
@@ -140,7 +142,6 @@ class ProductList extends React.Component {
         );
       }
     }
-    console.log(allPCards)
     return (
       <>
         <Container>
@@ -151,7 +152,7 @@ class ProductList extends React.Component {
             categories={this.state.categories}
           />
           <div className="add-products-allignment">
-            <div>Count : {this.state.products.length} Items</div>
+            <div>Count : {(this.state.products && this.state.products.length) || 0} Items</div>
 
             <div className="d-flex">
              
@@ -191,11 +192,21 @@ class ProductList extends React.Component {
   }
 }
 
-const ProductListWithRouter = () => {
+const mapStateToProps = state => {
+    return {
+        allProducts: state.products.allProducts
+    }
+}
 
-  const navigate = useNavigate();
-  return <ProductList navigate={navigate} />;
-};
-export default ProductListWithRouter;
+const ConnectedProductList = connect(
+    mapStateToProps
+)(ProductList);
 
+const ConnectedProductListWithRouter = () => {
+    const navigate = useNavigate();
+    return (
+        <ConnectedProductList navigate={navigate} />
+    )
+}
 
+export default ConnectedProductListWithRouter;
